@@ -239,8 +239,6 @@ EOL
 # Create a sample txt subject content (subject.txt)
 echo "Creating subject.txt with subject content..."
 cat > subject.txt <<EOL
-perfect
-
 Vendor Payment Advice Note
 INVC0059268 - [EXTERNAL] Fwd: RETURNED INVOICE FROM VENDOR
 RE: Outstanding payment 
@@ -250,37 +248,37 @@ INV & D.O - Edgenta I211637 & I211938 ( Oct INV & D.O)
 RE: E Invoice 
 Docusign -RFQ- PVC BOOT 12" 
 Your EFT Settlement Invoice is Ready for Review 
-RE: Invoice Reconciliation Report – {date}
-FW: Vendor Claim Adjustment – Doc #{random-number}
-Payment Confirmation Notice – Ref #{random-number}
-FW: Purchase Order #{random-number} – Signature Required
-RE: Invoice Query – {recipient-domain}
+RE: Invoice Reconciliation Report - {date}
+FW: Vendor Claim Adjustment - Doc #{random-number}
+Payment Confirmation Notice - Ref #{random-number}
+FW: Purchase Order #{random-number} - Signature Required
+RE: Invoice Query - {recipient-domain}
 FW: Credit Note #{random-number} Attached
-Vendor Statement – Period Ending {date}
-Remittance Advice – {recipient-domain} – {date}
-RE: Billing Discrepancy – Inv #{random-number}
-FW: Signed PO #{random-number} – For Review
-Payment Status Update – Ref #{random-number}
-RE: Returned EFT File – Ref #{random-number}
-FW: Vendor Invoice Approval – {date}
-Payment Advice – Inv #{random-number} – {recipient-domain}
-RE: Confirmation of Funds Transfer – {date}
-FW: PO #{random-number} – Document Attached
+Vendor Statement - Period Ending {date}
+Remittance Advice - {recipient-domain} - {date}
+RE: Billing Discrepancy - Inv #{random-number}
+FW: Signed PO #{random-number} - For Review
+Payment Status Update - Ref #{random-number}
+RE: Returned EFT File - Ref #{random-number}
+FW: Vendor Invoice Approval - {date}
+Payment Advice - Inv #{random-number} - {recipient-domain}
+RE: Confirmation of Funds Transfer - {date}
+FW: PO #{random-number} - Document Attached
 RE: Signed Quotation #{random-number}
-Payment Voucher #{random-number} – Please Review
+Payment Voucher #{random-number} - Please Review
 FW: Invoice #{random-number} Returned (Invalid PO)
-RE: Pending Invoice Validation – {date}
-Vendor Credit Memo #{random-number} – For Processing
-RE: Updated Banking Information – {recipient-domain}
-FW: Payment Release Form – Doc #{random-number}
-RE: Debit Note #{random-number} – Attached
-FW: Account Statement – {date} – {recipient-domain}
-RE: DocuSign Request – PO #{random-number}
-Payment Reconciliation – Ref #{random-number}
-FW: E-Payment Status – Batch #{random-number}
-RE: Supplier Settlement Confirmation – {date}
-FW: Approval Required – Invoice #{random-number}
-RE: Payment Advice from {recipient-domain} – {date}
+RE: Pending Invoice Validation - {date}
+Vendor Credit Memo #{random-number} - For Processing
+RE: Updated Banking Information - {recipient-domain}
+FW: Payment Release Form - Doc #{random-number}
+RE: Debit Note #{random-number} - Attached
+FW: Account Statement - {date} - {recipient-domain}
+RE: DocuSign Request - PO #{random-number}
+Payment Reconciliation - Ref #{random-number}
+FW: E-Payment Status - Batch #{random-number}
+RE: Supplier Settlement Confirmation - {date}
+FW: Approval Required - Invoice #{random-number}
+RE: Payment Advice from {recipient-domain} - {date}
 EOL
 
 # Create a sample txt name content (name.txt)
