@@ -196,11 +196,8 @@ EOL
 # Create a sample txt list content (list.txt)
 echo "Creating list.txt with list content..."
 cat > list.txt <<EOL
-boxxfc@gmail.com
-info@brickx.com
-gwenna@gwennakadima.com
-mackenzie@walshequipment.ca
-podpora@vsezapivo.si
+prodaja@vbuilding.rs
+accounts@sreecraft.in
 EOL
 
 # Create the sending script (send.sh)
